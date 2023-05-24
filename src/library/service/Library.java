@@ -1,29 +1,33 @@
 package library.service;
 
+import library.db.DB;
+import library.helpers.Counter;
 import library.model.Book;
 import library.model.Patron;
+import library.model.Transaction;
 
 import java.util.List;
 
 public class Library {
-    public void addBook(List<Book> books) {
-        //Add a new book to the library by providing its details
+    Counter counter = new Counter();
+    public void addBook(String title, String author, int publicationYear, boolean isAvailable) {
+        DB.bookList.add(new Book(title, author, publicationYear, isAvailable));
     }
 
-    public void removeBook(List<Book> books) {
-        //Remove a book from the library.
+    public void removeBook(Book book) {
+        DB.bookList.remove(book);
     }
 
-    public void registerPatron(List<Patron> patrons) {
-        //Register a new patron by providing their details.
+    public void registerPatron(String name, String address, String email) {
+        DB.patronList.add(new Patron(name, address, email));
     }
 
     public void updatePatron() {
         //Update patron information such as address or email.
     }
 
-    public void removePatron(List<Patron> patrons) {
-        // remove Patron
+    public void removePatron(Patron patron) {
+        DB.patronList.remove(patron);
     }
 
     public void borrowBook() {
@@ -39,7 +43,29 @@ public class Library {
         //Generate a report of all overdue books.
     }
 
+    public void showAllBooks() {
+        for (Book book : DB.bookList) {
+            counter.increment();
+            System.out.println(counter.getCount() + " " + book);
+        }
+        counter.reset();
+    }
 
+    public void showAllPatrons() {
+        for (Patron patron : DB.patronList) {
+            counter.increment();
+            System.out.println(counter.getCount() + " " + patron);
+        }
+        counter.reset();
+    }
+
+    public void showTransactions() {
+        for (Transaction transaction : DB.transactionList) {
+            counter.increment();
+            System.out.println(counter.getCount() + " " + transaction);
+        }
+        counter.reset();
+    }
 }
 
 // Rules !!!

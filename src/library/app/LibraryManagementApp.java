@@ -2,6 +2,7 @@ package library.app;
 
 public class LibraryManagementApp {
     public static void main(String[] args) {
+        System.out.println("Welcome to Library Management App!");
 
     }
 }
