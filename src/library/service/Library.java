@@ -6,12 +6,11 @@ import library.model.Book;
 import library.model.Patron;
 import library.model.Transaction;
 
-import java.util.List;
-
 public class Library {
     Counter counter = new Counter();
-    public void addBook(String title, String author, int publicationYear, boolean isAvailable) {
-        DB.bookList.add(new Book(title, author, publicationYear, isAvailable));
+
+    public void addBook(String title, String author, int publicationYear) {
+        DB.bookList.add(new Book(title, author, publicationYear));
     }
 
     public void removeBook(Book book) {
@@ -22,7 +21,14 @@ public class Library {
         DB.patronList.add(new Patron(name, address, email));
     }
 
-    public void updatePatron() {
+    public void updatePatron(String patronID, String name, String address, String email) {
+        if (getPatronByID(patronID) != -1) {
+            DB.patronList.get(getPatronByID(patronID)).setName(name);
+            DB.patronList.get(getPatronByID(patronID)).setAddress(address);
+            DB.patronList.get(getPatronByID(patronID)).setEmail(email);
+        } else {
+            System.out.println("No user found!");
+        }
         //Update patron information such as address or email.
     }
 
@@ -65,6 +71,12 @@ public class Library {
             System.out.println(counter.getCount() + " " + transaction);
         }
         counter.reset();
+    }
+
+    public int getPatronByID(String patronID) {
+        for (int i = 0; i < DB.patronList.size(); i++)
+            if (DB.patronList.get(i).getUiqueID().equals(patronID)) return i;
+        return -1;
     }
 }
 

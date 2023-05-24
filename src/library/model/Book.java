@@ -6,11 +6,11 @@ public class Book {
     private final int publicationYear;
     private final boolean isAvailable; // status
 
-    public Book(String title, String author, int publicationYear, boolean isAvailable) {
+    public Book(String title, String author, int publicationYear) {
         this.title = title;
         this.author = author;
         this.publicationYear = publicationYear;
-        this.isAvailable = isAvailable;
+        this.isAvailable = true;
     }
 
     public String getTitle() {
