@@ -4,7 +4,7 @@ public class Book {
     private final String title;
     private final String author;
     private final int publicationYear;
-    private final boolean isAvailable; // status
+    private boolean isAvailable; // status
 
     public Book(String title, String author, int publicationYear) {
         this.title = title;
@@ -27,6 +27,10 @@ public class Book {
 
     public boolean isAvailable() {
         return isAvailable;
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
     }
 
     @Override

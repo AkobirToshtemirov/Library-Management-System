@@ -22,6 +22,7 @@ public class LibraryManagementApp {
 
         // TRANSACTIONS
         DB.transactionList.add(new Transaction(DB.bookList.get(1), DB.patronList.get(1), "12 June 2023"));
+        DB.transactionList.add(new Transaction(DB.bookList.get(2), DB.patronList.get(2), "25 June 2023"));
 
         Library library = new Library();
 

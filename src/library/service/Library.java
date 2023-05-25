@@ -52,7 +52,7 @@ public class Library {
     public void showAllBooks() {
         for (Book book : DB.bookList) {
             counter.increment();
-            System.out.println(counter.getCount() + " " + book);
+            System.out.println(counter.getCount() + " " + book.getTitle());
         }
         counter.reset();
     }
@@ -60,7 +60,7 @@ public class Library {
     public void showAllPatrons() {
         for (Patron patron : DB.patronList) {
             counter.increment();
-            System.out.println(counter.getCount() + " " + patron);
+            System.out.println(counter.getCount() + " " + patron.getName());
         }
         counter.reset();
     }
@@ -68,7 +68,10 @@ public class Library {
     public void showTransactions() {
         for (Transaction transaction : DB.transactionList) {
             counter.increment();
-            System.out.println(counter.getCount() + " " + transaction);
+            System.out.println(counter.getCount() + " " +
+                    " Patron: " + transaction.getBorrowingPatron().getName()+
+                    ", Book: " + transaction.getBorrowedBook().getTitle() +
+                    ", Returning Dat: " + transaction.getReturningDate());
         }
         counter.reset();
     }
